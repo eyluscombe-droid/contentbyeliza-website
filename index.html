@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content by Eliza — UGC Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FAFAF8;
+    --cream: #F5F2ED;
+    --sage: #8A9E8C;
+    --sage-light: #C4D0C5;
+    --sage-pale: #EBF0EB;
+    --pink: #D4A5A0;
+    --pink-light: #EDD5D2;
+    --pink-pale: #F8EDEC;
+    --charcoal: #2C2C2A;
+    --mid: #6B6B68;
+    --light: #A8A8A5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(138,158,140,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--sage); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--charcoal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 88px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5.5vw, 80px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    color: var(--charcoal);
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--pink);
+  }
+
+  .hero-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--mid);
+    max-width: 420px;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--charcoal);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--sage);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sage-light);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--charcoal);
+    border-color: var(--charcoal);
+  }
+
+  .hero-right {
+    position: relative;
+    background: var(--sage-pale);
+    overflow: hidden;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .hero-img-circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sage-light), var(--pink-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--mid);
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: 60px;
+    left: -20px;
+    background: var(--white);
+    padding: 16px 24px;
+    box-shadow: 0 8px 32px rgba(44,44,42,0.08);
+  }
+
+  .hero-badge-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 4px;
+  }
+
+  .hero-badge-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+
+  .hero-badge-sub {
+    font-size: 12px;
+    color: var(--mid);
+    margin-top: 2px;
+  }
+
+  /* BRANDS STRIP */
+  .brands-strip {
+    padding: 32px 80px;
+    border-top: 1px solid rgba(138,158,140,0.2);
+    border-bottom: 1px solid rgba(138,158,140,0.2);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .brands-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--light);
+    white-space: nowrap;
+    margin-right: 16px;
+  }
+
+  .brand-pill {
+    padding: 8px 20px;
+    border: 1px solid var(--sage-light);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .brand-pill:hover {
+    background: var(--sage-pale);
+    color: var(--charcoal);
+  }
+
+  /* SECTION SHARED */
+  section {
+    padding: 100px 80px;
+  }
+
+  .section-header {
+    margin-bottom: 64px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--charcoal);
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--pink);
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--sage-light);
+    border: 1px solid var(--sage-light);
+  }
+
+  .stat-box {
+    background: var(--white);
+    padding: 32px;
+  }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  /* PORTFOLIO */
+  #portfolio {
+    background: var(--white);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .portfolio-thumb {
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: var(--sage-pale);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: transform 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  /* Simulated phone chrome */
+  .portfolio-thumb::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15), transparent);
+    z-index: 1;
+    border-radius: 8px 8px 0 0;
+  }
+
+  /* Video controls bar at bottom */
+  .portfolio-thumb::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 48px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    border-radius: 0 0 8px 8px;
+    z-index: 1;
+  }
+
+  .portfolio-item:hover .portfolio-thumb {
+    transform: scale(1.02);
+    box-shadow: 0 16px 40px rgba(44,44,42,0.15);
+  }
+
+  .play-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .play-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--charcoal);
+    margin-left: 3px;
+  }
+
+  .portfolio-item:hover .play-icon {
+    transform: scale(1.1);
+  }
+
+  /* Creator name watermark on thumb */
+  .portfolio-watermark {
+    position: absolute;
+    top: 14px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    z-index: 2;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  /* Fake video controls */
+  .portfolio-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 12px; right: 12px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ctrl-play {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .ctrl-play svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+  }
+
+  .ctrl-bar {
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .ctrl-bar::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 25%;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .ctrl-time {
+    font-size: 10px;
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .portfolio-placeholder-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--mid);
+    text-align: center;
+    padding: 0 16px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .portfolio-meta {
+    padding: 16px 4px 0;
+  }
+
+  .portfolio-brand {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 5px;
+  }
+
+  .portfolio-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .portfolio-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* SERVICES */
+  #services {
+    background: var(--charcoal);
+    color: var(--white);
+  }
+
+  #services .section-eyebrow {
+    color: var(--sage-light);
+  }
+
+  #services .section-eyebrow::before {
+    background: var(--sage-light);
+  }
+
+  #services .section-title {
+    color: var(--white);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 64px;
+  }
+
+  .service-card {
+    background: var(--charcoal);
+    padding: 40px 36px;
+    transition: background 0.2s;
+  }
+
+  .service-card:hover {
+    background: #363634;
+  }
+
+  .service-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+  }
+
+  .service-price {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--pink-light);
+  }
+
+  .service-price strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+
+  .services-note {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--pink-pale);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-left .section-title {
+    margin-bottom: 24px;
+  }
+
+  .contact-body {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--mid);
+    margin-bottom: 40px;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-detail-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-detail-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--sage);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .contact-detail-text {
+    font-size: 15px;
+    color: var(--charcoal);
+  }
+
+  .contact-detail-text a {
+    color: var(--charcoal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sage-light);
+    transition: border-color 0.2s;
+  }
+
+  .contact-detail-text a:hover {
+    border-color: var(--charcoal);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 14px 18px;
+    background: var(--white);
+    border: 1px solid rgba(138,158,140,0.3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--sage);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--light);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 80px;
+    background: var(--charcoal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-logo span { color: var(--sage-light); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 24px; }
+    .hero-right { min-height: 320px; }
+    section { padding: 64px 24px; }
+    #about, #contact { grid-template-columns: 1fr; gap: 48px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item:first-child { grid-column: auto; }
+    .brands-strip { padding: 24px; flex-wrap: wrap; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">content <span>by eliza</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">UGC Creator · Spain</div>
+    <h1 class="hero-title">
+      Content that<br>
+      feels <em>real,</em><br>
+      converts better
+    </h1>
+    <p class="hero-body">
+      Short-form branded content for fitness, wellness, skincare and nutrition brands. Warm, honest, conversion-ready — made by a real mum, not a marketing team.
+    </p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary">View the work</a>
+      <a href="#contact" class="btn-secondary">Work with me</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <div class="hero-img-circle">your photo here</div>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-label">Brands worked with</div>
+      <div class="hero-badge-value">4+</div>
+      <div class="hero-badge-sub">Vital Proteins · SIS · ISDIN · Hume</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands-strip">
+  <span class="brands-label">Trusted by</span>
+  <div class="brand-pill">Vital Proteins</div>
+  <div class="brand-pill">SIS Hydro</div>
+  <div class="brand-pill">ISDIN</div>
+  <div class="brand-pill">Hume Health</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text fade-up">
+    <div class="section-header">
+      <div class="section-eyebrow">About</div>
+      <h2 class="section-title">The person<br>behind the <em>lens</em></h2>
+    </div>
+    <p>I'm a fitness mum in my late thirties, based in Spain — making short-form content for brands that want to reach real women, not aspirational avatars.</p>
+    <p>My content sits at the intersection of <strong>honest mum-life</strong> and <strong>genuine wellness</strong>. I'm not selling perfection. I'm selling the thing that actually worked — and that's exactly why it converts.</p>
+    <p>I handle everything: scripting, filming, editing, and delivery. Brands get conversion-ready reels without the agency overhead.</p>
+  </div>
+  <div class="about-stats fade-up">
+    <div class="stat-box">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Brand partnerships</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">UGC</div>
+      <div class="stat-label">Ads & organic reels</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">ES</div>
+      <div class="stat-label">Based in Spain</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">UK</div>
+      <div class="stat-label">Primary audience</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header fade-up">
+    <div class="section-eyebrow">Work</div>
+    <h2 class="section-title">Recent brand <em>reels</em></h2>
+  </div>
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item fade-up">
+      <div class="portfolio-thumb">
+        <div class="portfolio-watermark">content by eliza</div>
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div class="portfolio-placeholder-text">replace with your<br>Vital Proteins reel</div>
+        <div class="portfolio-controls">
+          <div class="ctrl-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="ctrl-bar"></div>
+          <div class="ctrl-time">0:05</div>
+        </div>
+      </div>
+      <div class="portfolio-meta">
+        <div class="portfolio-brand">Vital Proteins</div>
+        <div class="portfolio-title">Collagen Peptides</div>
+        <div class="portfolio-desc">Conversion-focused UGC ad. Warm tone, honest narrative.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item fade-up">
+      <div class="portfolio-thumb" style="background: var(--pink-pale);">
+        <div class="portfolio-watermark">content by eliza</div>
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div class="portfolio-placeholder-text">replace with your<br>SIS Hydro reel</div>
+        <div class="portfolio-controls">
+          <div class="ctrl-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="ctrl-bar"></div>
+          <div class="ctrl-time">0:00</div>
+        </div>
+      </div>
+      <div class="portfolio-meta">
+        <div class="portfolio-brand">SIS GO Hydration</div>
+        <div class="portfolio-title">GO Hydration</div>
+        <div class="portfolio-desc">Problem-led hook from a real training moment.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item fade-up">
+      <div class="portfolio-thumb" style="background: #EEF2EE;">
+        <div class="portfolio-watermark">content by eliza</div>
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div class="portfolio-placeholder-text">replace with your<br>ISDIN reel</div>
+        <div class="portfolio-controls">
+          <div class="ctrl-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="ctrl-bar"></div>
+          <div class="ctrl-time">0:00</div>
+        </div>
+      </div>
+      <div class="portfolio-meta">
+        <div class="portfolio-brand">ISDIN</div>
+        <div class="portfolio-title">Fusion Water Magic SPF</div>
+        <div class="portfolio-desc">Skincare UGC in natural Spanish light.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item fade-up">
+      <div class="portfolio-thumb" style="background: #F0EBF0;">
+        <div class="portfolio-watermark">content by eliza</div>
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div class="portfolio-placeholder-text">replace with your<br>Hume Health reel</div>
+        <div class="portfolio-controls">
+          <div class="ctrl-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <div class="ctrl-bar"></div>
+          <div class="ctrl-time">0:00</div>
+        </div>
+      </div>
+      <div class="portfolio-meta">
+        <div class="portfolio-brand">Hume Health</div>
+        <div class="portfolio-title">Body Pod</div>
+        <div class="portfolio-desc">Health tech UGC — approachable, not clinical.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header fade-up">
+    <div class="section-eyebrow">Services</div>
+    <h2 class="section-title">What I <em>offer</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-number">01</div>
+      <div class="service-name">UGC Ad Reel</div>
+      <div class="service-desc">One conversion-focused reel. Hook → Message → CTA structure. Script, film, edit, and deliver. Designed to run as a paid ad or organic post.</div>
+      <div class="service-price">
+        <strong>From £250</strong>
+        per reel
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-number">02</div>
+      <div class="service-name">Reel Package</div>
+      <div class="service-desc">Three reels for one brief — top, middle, and bottom of funnel. Consistent story, different hooks. Best value for brands running paid campaigns.</div>
+      <div class="service-price">
+        <strong>From £600</strong>
+        per package of 3
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-number">03</div>
+      <div class="service-name">Monthly Retainer</div>
+      <div class="service-desc">Ongoing content partnership. Four reels per month, priority turnaround, and a dedicated brand voice that compounds over time.</div>
+      <div class="service-price">
+        <strong>From £900</strong>
+        per month
+      </div>
+    </div>
+  </div>
+  <p class="services-note">All packages include scripting, filming, editing, and two rounds of revisions. Rates vary by brief complexity — get in touch to discuss.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left fade-up">
+    <div class="section-header">
+      <div class="section-eyebrow">Contact</div>
+      <h2 class="section-title">Let's make<br>something <em>good</em></h2>
+    </div>
+    <p class="contact-body">
+      If you're looking for honest, conversion-ready content that actually sounds human — I'd love to hear about your brief. I work with brands I genuinely believe in.
+    </p>
+    <div class="contact-details">
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-detail-text">
+          <a href="mailto:eliza@contentbyeliza.co.uk">eliza@contentbyeliza.co.uk</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="contact-detail-text">
+          <a href="https://instagram.com" target="_blank">@contentbyeliza</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-detail-text">Based in Spain · Working with UK brands</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form fade-up">
+    <div class="form-group">
+      <label class="form-label">Your name</label>
+      <input type="text" class="form-input" placeholder="Jane Smith">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Brand / Company</label>
+      <input type="text" class="form-input" placeholder="Brand name">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" placeholder="jane@brand.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tell me about your brief</label>
+      <textarea class="form-textarea" placeholder="What's the product, who's the audience, and what do you need?"></textarea>
+    </div>
+    <button class="btn-primary" onclick="alert('Form submitted! Eliza will be in touch shortly.')">Send enquiry</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">content <span>by eliza</span></div>
+  <div class="footer-copy">© 2026 contentbyeliza.co.uk · All rights reserved</div>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
