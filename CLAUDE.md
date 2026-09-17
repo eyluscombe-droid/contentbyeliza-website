@@ -7,7 +7,9 @@ Deliberately minimal: **one hand-written `index.html`** at the repo root with in
 
 - `index.html` — the entire site
 - `videos/` — portfolio mp4s and their poster jpgs
-- `CNAME` — custom domain
+- `assets/` — hero portrait and other images
+- `og-image.png` — Open Graph share image (1200×630)
+- `CNAME` — custom domain (`contentbyeliza.co.uk`)
 - `.github/workflows/deploy.yml` — GitHub Pages, uploads repo root on push to `main`
 
 Because Pages serves the repo root directly, **all asset paths must be root-relative** (`videos/foo.mp4`, not `/videos/foo.mp4` or `./`).
@@ -22,10 +24,9 @@ Because Pages serves the repo root directly, **all asset paths must be root-rela
 - Compact CSS, one concern per rule. Keep the existing comment banners (`/* PORTFOLIO */`) as section markers.
 
 ## Known gaps
-- `videos/*.mp4` are not committed — posters render in their place. Four are referenced: `vital-proteins`, `sis-hydration`, `isdin-spf`, `hume-bodypod`.
+- `assets/eliza.jpg` (hero portrait) is not committed — the hero section shows a placeholder note until it is added.
 - The contact form's Formspree action still contains the literal `YOUR_FORM_ID`.
 - The "Book a discovery call" calendar is a mock — confirming a slot fires an `alert()` and reaches no real calendar. Replace with a Cal.com or Calendly embed before promoting it.
-- No favicon or Open Graph image.
 
 ## Testing
 Open `index.html` directly in a browser, or `python3 -m http.server` from the repo root. Check the 980px and 600px breakpoints, and that clicking one video tile pauses any other that is playing.
