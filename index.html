@@ -928,86 +928,11 @@
 
   .contact-email-link:hover { color: var(--charcoal); }
 
-  /* BOOKING CARD */
-  .booking-card {
-    background: var(--white);
-    border: 1px solid rgba(138,158,140,0.25);
-    padding: 32px;
-    box-shadow: 0 24px 60px -34px rgba(44,44,42,0.28);
-  }
-
-  .booking-meta {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-
-  .booking-avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--sage-light), var(--pink-light));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    font-style: italic;
-    color: var(--charcoal);
-    flex-shrink: 0;
-  }
-
-  .booking-meta-text { display: flex; flex-direction: column; gap: 3px; }
-
-  .booking-host {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--light);
-  }
-
-  .booking-type {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--charcoal);
-  }
-
-  .booking-facts {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 24px;
-    padding: 16px 0;
-    margin-bottom: 8px;
-    border-top: 1px solid rgba(138,158,140,0.18);
-    border-bottom: 1px solid rgba(138,158,140,0.18);
-  }
-
-  .booking-facts li {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 13px;
-    color: var(--mid);
-  }
-
-  .booking-facts svg {
-    width: 15px;
-    height: 15px;
-    stroke: var(--sage);
-    fill: none;
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    flex-shrink: 0;
-  }
-
+  /* BOOKING EMBED */
   .booking-cal-embed {
-    padding-top: 16px;
-    height: 480px;
+    height: 550px;
     overflow: hidden;
+    border: 1px solid rgba(138,158,140,0.25);
   }
 
   @media (max-width: 980px) {
@@ -1021,7 +946,6 @@
 
   @media (max-width: 600px) {
     .process-grid { grid-template-columns: 1fr; }
-    .booking-card { padding: 22px; }
   }
 
   /* FOOTER */
@@ -1559,16 +1483,7 @@
         <span class="contact-col-kicker">Option two</span>
         <h3 class="contact-col-title">Book a discovery call</h3>
       </div>
-      <div class="booking-card">
-        <div class="booking-meta">
-          <div class="booking-avatar">CbE</div>
-          <div class="booking-meta-text">
-            <span class="booking-host">Content by Eliza</span>
-            <span class="booking-type">Discovery Call</span>
-          </div>
-        </div>
-        <div class="booking-cal-embed" id="cal-embed"></div>
-      </div>
+      <div class="booking-cal-embed" id="cal-embed"></div>
     </div>
   </div>
 </section>
