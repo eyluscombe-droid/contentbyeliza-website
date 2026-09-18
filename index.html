@@ -1004,177 +1004,9 @@
     flex-shrink: 0;
   }
 
-  .booking-body {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 28px;
-    padding-top: 22px;
-  }
-
-  .cal-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-
-  .cal-month {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--charcoal);
-  }
-
-  .cal-nav {
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--sage-light);
-    background: var(--white);
-    color: var(--mid);
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-
-  .cal-nav:hover { background: var(--sage-pale); color: var(--charcoal); }
-  .cal-nav:disabled { opacity: 0.3; cursor: default; }
-  .cal-nav:disabled:hover { background: var(--white); color: var(--mid); }
-
-  .cal-dow {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    margin-bottom: 6px;
-  }
-
-  .cal-dow span {
-    text-align: center;
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    color: var(--light);
-    padding: 4px 0;
-  }
-
-  .cal-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-  }
-
-  .cal-day {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--charcoal);
-    border: none;
-    background: transparent;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .cal-day.empty { cursor: default; }
-
-  .cal-day.unavailable {
-    color: var(--light);
-    cursor: default;
-    opacity: 0.45;
-  }
-
-  .cal-day.available {
-    background: var(--sage-pale);
-    color: var(--charcoal);
-    font-weight: 500;
-  }
-
-  .cal-day.available:hover {
-    background: var(--sage-light);
-  }
-
-  .cal-day.selected {
-    background: var(--charcoal);
-    color: var(--white);
-  }
-
-  .booking-slots {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .slots-label {
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(138,158,140,0.18);
-  }
-
-  .slots-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-height: 230px;
-    overflow-y: auto;
-  }
-
-  .slots-empty {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-style: italic;
-    color: var(--light);
-    line-height: 1.5;
-  }
-
-  .slot-btn {
-    padding: 11px 14px;
-    border: 1px solid var(--sage-light);
-    background: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--charcoal);
-    cursor: pointer;
-    transition: all 0.18s;
-    text-align: center;
-  }
-
-  .slot-btn:hover {
-    border-color: var(--sage);
-    background: var(--sage-pale);
-  }
-
-  .slot-btn.confirmed {
-    background: var(--charcoal);
-    color: var(--white);
-    border-color: var(--charcoal);
-  }
-
-  .booking-tz {
-    font-size: 11px;
-    color: var(--light);
-    margin-top: 20px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(138,158,140,0.18);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .booking-tz::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--sage);
+  .booking-cal-embed {
+    padding-top: 16px;
+    min-height: 400px;
   }
 
   @media (max-width: 980px) {
@@ -1188,7 +1020,6 @@
 
   @media (max-width: 600px) {
     .process-grid { grid-template-columns: 1fr; }
-    .booking-body { grid-template-columns: 1fr; gap: 24px; }
     .booking-card { padding: 22px; }
   }
 
@@ -1732,32 +1563,10 @@
           <div class="booking-avatar">CbE</div>
           <div class="booking-meta-text">
             <span class="booking-host">Content by Eliza</span>
-            <span class="booking-type">15 Min Discovery Call</span>
+            <span class="booking-type">Discovery Call</span>
           </div>
         </div>
-        <ul class="booking-facts">
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15,14"/></svg>15 minutes</li>
-          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>Video call · free, no obligation</li>
-        </ul>
-
-        <div class="booking-body">
-          <div class="booking-cal">
-            <div class="cal-head">
-              <button class="cal-nav" id="calPrev" aria-label="Previous month">‹</button>
-              <span class="cal-month" id="calMonth">June 2026</span>
-              <button class="cal-nav" id="calNext" aria-label="Next month">›</button>
-            </div>
-            <div class="cal-dow"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
-            <div class="cal-grid" id="calGrid"></div>
-          </div>
-          <div class="booking-slots">
-            <div class="slots-label" id="slotsLabel">Select a date</div>
-            <div class="slots-list" id="slotsList">
-              <p class="slots-empty">Pick an available day to see times.</p>
-            </div>
-          </div>
-        </div>
-        <p class="booking-tz">Times shown in your local timezone</p>
+        <div class="booking-cal-embed" id="cal-embed"></div>
       </div>
     </div>
   </div>
@@ -1818,102 +1627,37 @@
     video.addEventListener('ended', () => thumb.classList.remove('playing'));
   });
 
-  // ---- Discovery call booking calendar ----
-  (function () {
-    const grid = document.getElementById('calGrid');
-    const monthLabel = document.getElementById('calMonth');
-    const slotsLabel = document.getElementById('slotsLabel');
-    const slotsList = document.getElementById('slotsList');
-    const prevBtn = document.getElementById('calPrev');
-    const nextBtn = document.getElementById('calNext');
-    if (!grid) return;
+</script>
 
-    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    const TIMES = ['09:00', '09:30', '11:00', '13:30', '14:00', '15:30', '16:00'];
-
-    // Start from June 2026; allow this month + next 2
-    let viewYear = 2026, viewMonth = 5; // 0-indexed -> June
-    const minY = 2026, minM = 5;
-    const maxY = 2026, maxM = 7; // up to August
-    let selectedKey = null;
-
-    function isAvailable(y, m, d) {
-      const date = new Date(y, m, d);
-      const dow = date.getDay(); // 0 Sun ... 6 Sat
-      if (dow === 0 || dow === 6) return false;        // no weekends
-      if (y === 2026 && m === 5 && d < 8) return false; // past/too-soon in June
-      if (d % 7 === 3) return false;                    // a few fully-booked days
-      return true;
-    }
-
-    function render() {
-      monthLabel.textContent = MONTHS[viewMonth] + ' ' + viewYear;
-      prevBtn.disabled = (viewYear === minY && viewMonth === minM);
-      nextBtn.disabled = (viewYear === maxY && viewMonth === maxM);
-
-      grid.innerHTML = '';
-      const first = new Date(viewYear, viewMonth, 1);
-      let lead = (first.getDay() + 6) % 7; // make Monday=0
-      const days = new Date(viewYear, viewMonth + 1, 0).getDate();
-
-      for (let i = 0; i < lead; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'cal-day empty';
-        grid.appendChild(cell);
+<!-- Cal.com inline embed -->
+<script>
+  (function (C, A, L) {
+    var p = function (a, ar) { a.q.push(ar); };
+    var d = C.document;
+    C.Cal = C.Cal || function () {
+      var cal = C.Cal;
+      var ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {}; cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
       }
-      for (let d = 1; d <= days; d++) {
-        const btn = document.createElement('button');
-        btn.textContent = d;
-        const key = viewYear + '-' + viewMonth + '-' + d;
-        if (isAvailable(viewYear, viewMonth, d)) {
-          btn.className = 'cal-day available' + (key === selectedKey ? ' selected' : '');
-          btn.addEventListener('click', () => selectDay(viewYear, viewMonth, d, key));
-        } else {
-          btn.className = 'cal-day unavailable';
-          btn.disabled = true;
-        }
-        grid.appendChild(btn);
-      }
-    }
+      if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
 
-    function selectDay(y, m, d, key) {
-      selectedKey = key;
-      render();
-      const date = new Date(y, m, d);
-      const nice = date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
-      slotsLabel.textContent = nice;
-      slotsList.innerHTML = '';
-      TIMES.forEach(t => {
-        const b = document.createElement('button');
-        b.className = 'slot-btn';
-        b.textContent = t;
-        b.addEventListener('click', () => {
-          slotsList.querySelectorAll('.slot-btn').forEach(x => x.classList.remove('confirmed'));
-          b.classList.add('confirmed');
-          b.textContent = t + '  \u2713  Confirm';
-          setTimeout(() => {
-            alert('Lovely! A 15-minute discovery call is pencilled in for ' + nice + ' at ' + t + '. Eliza will email you a confirmation and video link.');
-            b.textContent = t;
-            b.classList.remove('confirmed');
-          }, 150);
-        });
-        slotsList.appendChild(b);
-      });
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (viewYear === minY && viewMonth === minM) return;
-      viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-      render();
-    });
-    nextBtn.addEventListener('click', () => {
-      if (viewYear === maxY && viewMonth === maxM) return;
-      viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-      render();
-    });
-
-    render();
-  })();
+  Cal("init", "eliza", { origin: "https://cal.com" });
+  Cal.ns.eliza("inline", {
+    elementOrSelector: "#cal-embed",
+    calLink: "eliza-luscombe-lpfvxa",
+    layout: "month_view"
+  });
+  Cal.ns.eliza("ui", {
+    styles: { branding: { brandColor: "#2C2C2A" } },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
 </script>
 
 <script>
