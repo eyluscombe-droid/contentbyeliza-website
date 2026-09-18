@@ -929,10 +929,16 @@
   .contact-email-link:hover { color: var(--charcoal); }
 
   /* BOOKING EMBED */
-  .booking-cal-embed {
-    height: 550px;
-    overflow: hidden;
+  .booking-cal-embed-wrap {
     border: 1px solid rgba(138,158,140,0.25);
+    overflow: hidden;
+  }
+
+  .booking-cal-embed {
+    transform: scale(0.85);
+    transform-origin: top left;
+    width: 117.65%;
+    height: 600px;
   }
 
   @media (max-width: 980px) {
@@ -1440,9 +1446,9 @@
     <p class="contact-body">Pop me an email, or book a free 15-minute discovery call straight into my diary using the calendar below.</p>
   </div>
 
-  <div class="contact-grid">
+  <div class="contact-grid fade-up">
     <!-- FORM -->
-    <div class="contact-col fade-up">
+    <div class="contact-col">
       <div class="contact-col-head">
         <span class="contact-col-kicker">Option one</span>
         <h3 class="contact-col-title">Send me a message</h3>
@@ -1478,12 +1484,14 @@
     </div>
 
     <!-- CALENDAR -->
-    <div class="contact-col fade-up">
+    <div class="contact-col">
       <div class="contact-col-head">
         <span class="contact-col-kicker">Option two</span>
         <h3 class="contact-col-title">Book a discovery call</h3>
       </div>
-      <div class="booking-cal-embed" id="cal-embed"></div>
+      <div class="booking-cal-embed-wrap">
+        <div class="booking-cal-embed" id="cal-embed"></div>
+      </div>
     </div>
   </div>
 </section>
