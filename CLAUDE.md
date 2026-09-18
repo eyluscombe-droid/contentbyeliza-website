@@ -25,7 +25,7 @@ Because Pages serves the repo root directly, **all asset paths must be root-rela
 
 ## Known gaps
 - `assets/eliza.jpg` (hero portrait) is not committed — the hero section shows a placeholder note until it is added.
-- The contact form's Formspree action still contains the literal `YOUR_FORM_ID`.
+- The contact form uses `@formspree/ajax` (CDN) with form ID `xljddrkp`. On success it shows an in-page confirmation; on error, field-level messages appear.
 - The "Book a discovery call" calendar is a mock — confirming a slot fires an `alert()` and reaches no real calendar. Replace with a Cal.com or Calendly embed before promoting it.
 
 ## Testing
