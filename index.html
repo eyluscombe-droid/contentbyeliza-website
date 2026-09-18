@@ -918,15 +918,21 @@
   }
 
   .contact-email-link {
-    font-size: 13px;
-    color: var(--mid);
+    display: block;
+    font-size: 15px;
+    color: var(--sage);
     text-decoration: none;
     text-align: center;
-    border-bottom: 1px solid transparent;
-    transition: color 0.2s;
+    margin-top: 20px;
+    padding: 14px 0;
+    border: 1px solid var(--sage);
+    transition: all 0.2s;
   }
 
-  .contact-email-link:hover { color: var(--charcoal); }
+  .contact-email-link:hover {
+    background: var(--sage);
+    color: var(--white);
+  }
 
   /* BOOKING EMBED */
   .booking-cal-embed {
