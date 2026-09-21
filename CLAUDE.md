@@ -24,7 +24,6 @@ Because Pages serves the repo root directly, **all asset paths must be root-rela
 - Compact CSS, one concern per rule. Keep the existing comment banners (`/* PORTFOLIO */`) as section markers.
 
 ## Known gaps
-- `assets/eliza.jpg` (hero portrait) is not committed — the hero section shows a placeholder note until it is added.
 - The contact form uses `@formspree/ajax` (CDN) with form ID `xljddrkp`. On success it shows an in-page confirmation; on error, field-level messages appear.
 - The "Book a discovery call" section uses a Cal.com inline embed (`eliza-luscombe-lpfvxa`). Visitors can book directly on the page.
 
