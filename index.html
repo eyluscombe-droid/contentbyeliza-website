@@ -576,6 +576,39 @@
     pointer-events: auto;
   }
 
+  .mute-toggle {
+    position: absolute;
+    bottom: 16px;
+    right: 12px;
+    z-index: 6;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(44,44,42,0.55);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, background 0.2s;
+  }
+  .mute-toggle svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .mute-toggle:hover { background: rgba(44,44,42,0.8); }
+  .portfolio-thumb.playing .mute-toggle {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .portfolio-placeholder-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 13px;
@@ -1287,6 +1320,7 @@
           <div class="ctrl-bar"></div>
           <div class="ctrl-time">0:05</div>
         </div>
+        <button class="mute-toggle" type="button" aria-label="Mute"><svg viewBox="0 0 24 24"><path class="speaker" d="M11 5L6 9H2v6h4l5 4V5z"/><path class="sound-on" d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/><line class="sound-off" x1="23" y1="9" x2="17" y2="15" style="display:none"/><line class="sound-off" x1="17" y1="9" x2="23" y2="15" style="display:none"/></svg></button>
       </div>
       <div class="portfolio-meta">
         <div class="portfolio-brand">Vital Proteins</div>
@@ -1307,6 +1341,7 @@
           <div class="ctrl-bar"></div>
           <div class="ctrl-time">0:00</div>
         </div>
+        <button class="mute-toggle" type="button" aria-label="Mute"><svg viewBox="0 0 24 24"><path class="speaker" d="M11 5L6 9H2v6h4l5 4V5z"/><path class="sound-on" d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/><line class="sound-off" x1="23" y1="9" x2="17" y2="15" style="display:none"/><line class="sound-off" x1="17" y1="9" x2="23" y2="15" style="display:none"/></svg></button>
       </div>
       <div class="portfolio-meta">
         <div class="portfolio-brand">SIS GO Hydro</div>
@@ -1327,6 +1362,7 @@
           <div class="ctrl-bar"></div>
           <div class="ctrl-time">0:00</div>
         </div>
+        <button class="mute-toggle" type="button" aria-label="Mute"><svg viewBox="0 0 24 24"><path class="speaker" d="M11 5L6 9H2v6h4l5 4V5z"/><path class="sound-on" d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/><line class="sound-off" x1="23" y1="9" x2="17" y2="15" style="display:none"/><line class="sound-off" x1="17" y1="9" x2="23" y2="15" style="display:none"/></svg></button>
       </div>
       <div class="portfolio-meta">
         <div class="portfolio-brand">ISDIN</div>
@@ -1347,6 +1383,7 @@
           <div class="ctrl-bar"></div>
           <div class="ctrl-time">0:00</div>
         </div>
+        <button class="mute-toggle" type="button" aria-label="Mute"><svg viewBox="0 0 24 24"><path class="speaker" d="M11 5L6 9H2v6h4l5 4V5z"/><path class="sound-on" d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/><line class="sound-off" x1="23" y1="9" x2="17" y2="15" style="display:none"/><line class="sound-off" x1="17" y1="9" x2="23" y2="15" style="display:none"/></svg></button>
       </div>
       <div class="portfolio-meta">
         <div class="portfolio-brand">Hume Health</div>
@@ -1528,9 +1565,30 @@
       }
     }
 
-    thumb.addEventListener('click', e => { e.preventDefault(); toggle(); });
-    video.addEventListener('play', () => thumb.classList.add('playing'));
-    video.addEventListener('pause', () => thumb.classList.remove('playing'));
+    const muteBtn = thumb.querySelector('.mute-toggle');
+
+    thumb.addEventListener('click', e => {
+      if (e.target.closest('.mute-toggle')) return;
+      e.preventDefault(); toggle();
+    });
+
+    if (muteBtn) {
+      muteBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        updateMuteIcon();
+      });
+    }
+
+    function updateMuteIcon() {
+      if (!muteBtn) return;
+      muteBtn.querySelectorAll('.sound-on').forEach(el => el.style.display = video.muted ? 'none' : '');
+      muteBtn.querySelectorAll('.sound-off').forEach(el => el.style.display = video.muted ? '' : 'none');
+      muteBtn.setAttribute('aria-label', video.muted ? 'Unmute' : 'Mute');
+    }
+
+    video.addEventListener('play', () => { thumb.classList.add('playing'); updateMuteIcon(); });
+    video.addEventListener('pause', () => { thumb.classList.remove('playing'); updateMuteIcon(); });
     video.addEventListener('ended', () => thumb.classList.remove('playing'));
   });
 
