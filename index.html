@@ -1517,11 +1517,13 @@
     function toggle() {
       if (video.paused) {
         document.querySelectorAll('.portfolio-video').forEach(v => {
-          if (v !== video) { v.pause(); v.closest('.portfolio-thumb').classList.remove('playing'); }
+          if (v !== video) { v.muted = true; v.pause(); v.closest('.portfolio-thumb').classList.remove('playing'); }
         });
+        video.muted = false;
         const p = video.play();
         if (p && p.catch) p.catch(() => {});
       } else {
+        video.muted = true;
         video.pause();
       }
     }
